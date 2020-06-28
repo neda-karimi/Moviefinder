@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -12,12 +13,15 @@ import android.widget.ProgressBar;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.ref.ReferenceQueue;
+import java.util.Queue;
 
 public class MainActivity extends AppCompatActivity {
      private ImageView posters;
@@ -41,9 +45,21 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 progressBar.setVisibility(View.GONE);
                 try {
-                    JSONObject jsonObject=new JSONObject(response.toString(""));
+                    JSONObject jsonObject = new JSONObject(response);
+                    //posters.setImageBitmap(jsonObject.getJSONArray("example"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
-        })
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressBar.setVisibility(View.GONE);
+                Log.d( "Error Response",error.toString());
+            }
+        }
+        );
+        queue.add(stringRequest);
     }
+
 }
