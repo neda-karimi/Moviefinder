@@ -8,16 +8,18 @@ public class MovieClass {
         this.name=name;
         this.movietitle=movietitle;
     }
+
+
     public  String getImages(){
         return  images;
     }
-    public  void  setImages(){
+    public  void  setImages(String poster_path){
         this.images=images;
     }
     public  String getSummary(){
         return  summary;
     }
-    public  void  setSummary(){
+    public  void  setSummary(String string){
         this.summary=summary;
     }
     public  String getName(){
