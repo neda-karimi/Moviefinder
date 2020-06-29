@@ -1,6 +1,7 @@
 package com.example.moviefinder;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -24,6 +25,7 @@ import java.lang.ref.ReferenceQueue;
 import java.util.Queue;
 
 public class MainActivity extends AppCompatActivity {
+    GridLayoutManager gridLayoutManager;
      private ImageView posters;
      private ProgressBar progressBar;
      private RecyclerView recyclerView;

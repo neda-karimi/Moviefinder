@@ -1,4 +1,5 @@
 package com.example.moviefinder;
+import android.view.LayoutInflater;
 import  android.view.View;
 import android.view.ViewGroup;
 
@@ -13,8 +14,8 @@ public class adapter extends RecyclerView.Adapter<adapter.VeiwHolder> {
     @NonNull
     @Override
     public adapter.VeiwHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        return null;
+      View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movies,parent,false);
+      return new VeiwHolder(view);
     }
     @Override
     public void onBindViewHolder(@NonNull adapter.VeiwHolder holder, int position) {
