@@ -19,11 +19,11 @@ import java.util.List;
 public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
     private ArrayList<MovieClass> movieClasses;
     private Context context;
-    //DataTransferInterface dataTransferInterface;
+
     public adapter(Context context,ArrayList<MovieClass>movieClasses){
         this.context=context;
         this.movieClasses=movieClasses;
-        //this.dataTransferInterface=dataTransfer;
+
     }
 
 
@@ -47,10 +47,6 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView posters;
-        //TextView tv_title ;
-        //TextView tv_overview ;
-        //TextView tv_release ;
-        //ImageView img_backdrop;
         private LinearLayout viewContainer;
 
         public ViewHolder(@NonNull View itemView) {
