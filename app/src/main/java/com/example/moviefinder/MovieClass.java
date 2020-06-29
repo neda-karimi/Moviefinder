@@ -1,37 +1,32 @@
 package com.example.moviefinder;
 
 public class MovieClass {
-    String images,summary,name,movietitle;
-    public MovieClass(String images,String summary,String name,String movietitle){
-        this.images=images;
-        this.summary=summary;
-        this.name=name;
-        this.movietitle=movietitle;
+    String poster_path,overview,title;
+    public MovieClass(String poster_path,String overview,String title){
+        this.poster_path=poster_path;
+        this.overview=overview;
+        this.title=title;
+
     }
 
 
-    public  String getImages(){
-        return  images;
+    public  String getPoster_path(){
+        return  poster_path;
     }
-    public  void  setImages(String poster_path){
-        this.images=images;
+    public  void  setPoster_path(String poster_path){
+        this.poster_path=poster_path;
     }
-    public  String getSummary(){
-        return  summary;
+    public  String getOverview(){
+        return overview;
     }
-    public  void  setSummary(String string){
-        this.summary=summary;
+    public  void  setOverview(String overview){
+        this.overview=overview;
     }
-    public  String getName(){
-        return name;
+    public  String getTitle(){
+        return title;
     }
-    public  void  setName(){
-        this.name=name;
+    public  void  setTitle(){
+        this.title=title;
     }
-    public  String getMovietitle(){
-        return  movietitle;
-    }
-    public  void  setMovietitle(){
-        this.movietitle=movietitle;
-    }
+
 }

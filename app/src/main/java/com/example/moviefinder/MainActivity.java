@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -31,7 +32,7 @@ import java.util.Queue;
 public class MainActivity extends AppCompatActivity {
     GridLayoutManager gridLayoutManager;
     private final String Json_url = "https://api.themoviedb.org/3/movie/popular?api_key=8e831e1fadddbac0c856db2f9bd078aa&language=en-US&page=1";
-    private ImageView posters;
+    //private ImageView posters;
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
     Context context;
@@ -46,16 +47,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         requestQueue = Volley.newRequestQueue(this);
-        gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
-        posters = findViewById(R.id.film_poster);
-        progressBar = findViewById(R.id.progress1);
+        gridLayoutManager = new GridLayoutManager(getApplicationContext(), 4);
+        //posters = findViewById(R.id.film_poster);
+
+        recyclerView.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setHasFixedSize(true);
         getdata();
     }
 
     private void view() {
-        adapter adapter = new adapter(MainActivity.this.movieClasses);
+        adapter adapter = new adapter(MainActivity.this,movieClasses);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(gridLayoutManager);
     }
@@ -64,14 +66,14 @@ public class MainActivity extends AppCompatActivity {
 //        RequestQueue queue = Volley.newRequestQueue(this);
         movieClasses = new ArrayList<>();
         final String url = "https://api.themoviedb.org/3/movie/popular?api_key=8e831e1fadddbac0c856db2f9bd078aa&language=en-US&page=1";
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(JSONArray response) {
+            public void onResponse(JSONObject response) {
                 progressBar.setVisibility(View.GONE);
                 if (response != null) {
                     Log.e(msg, "responsing:" + response);
                     try {
-                        JSONArray jsonArray = response.getJSONArray(Integer.parseInt("results"));
+                        JSONArray jsonArray = response.getJSONArray("results");
                         for (int i = 0; i < jsonArray.length(); i++) {
                             try {
                                 JSONObject infor = jsonArray.getJSONObject(i);
@@ -85,7 +87,10 @@ public class MainActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+
             }
+
+
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -94,8 +99,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        requestQueue.add(jsonObjectRequest);
 
     }
+
 }
 
 
