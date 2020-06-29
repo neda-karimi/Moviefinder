@@ -57,14 +57,6 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
             super(itemView);
             viewContainer = itemView.findViewById(R.id.items);
             posters=itemView.findViewById(R.id.film_poster);
-            //tv_title = itemView.findViewById(R.id.title);
-            //tv_overview = itemView.findViewById(R.id.overview);
-            //tv_release = itemView.findViewById(R.id.release);
-            //img_backdrop = itemView.findViewById(R.id.backdrop);
-            //itemView.setOnClickListener(new View.OnClickListener() {
-                //@Override
-               // public void onClick(View v) {
-                    //dataTransferInterface.movieClick(imageUrl.get(getAdapterPosition()),img);
 
                 ;
         };
